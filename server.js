@@ -31,15 +31,15 @@ async function createServer() {
     try {
       // 1. Read index.html
 
-      // let template = fs.readFileSync(
-      //   path.resolve(__dirname, "index.html"),
-      //   "utf-8"
-      // );
-
-      const template = fs.readFileSync(
-        path.resolve(__dirname, "dist/client/index.html"),
+      let template = fs.readFileSync(
+        path.resolve(__dirname, "index.html"),
         "utf-8"
       );
+
+      // const template = fs.readFileSync(
+      //   path.resolve(__dirname, "dist/client/index.html"),
+      //   "utf-8"
+      // );
 
       
 
@@ -52,8 +52,8 @@ async function createServer() {
       //    ESM source code to be usable in Node.js! There is no bundling
       //    required, and provides efficient invalidation similar to HMR.
 
-      // const { render } = await vite.ssrLoadModule("/src/entry-server.jsx");
-      const { render } = await import(path.resolve(__dirname, 'dist/server/entry-server.js'));
+      const { render } = await vite.ssrLoadModule("/src/entry-server.jsx");
+      // const { render } = await import(path.resolve(__dirname, 'dist/server/entry-server.js'));
 
 
       // 4. render the app HTML. This assumes entry-server.js's exported
