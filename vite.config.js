@@ -91,11 +91,16 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ command, mode, ssrBuild }) => ({
   plugins: [
-    react({
-      jsxRuntime: 'automatic',
-      jsxDev: false,
-    }),
+    react(
+      {
+        // Use the automatic JSX runtime
+        jsxRuntime: 'automatic',
+        // Disable development mode for production builds
+        jsxDev: mode !== 'production',
+      }
+    ),
   ],
+  appType: 'custom',
   build: ssrBuild
     ? {
         ssr: 'src/entry-server.jsx', // for SSR build
