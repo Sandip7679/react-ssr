@@ -4,7 +4,8 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import { createServer as createViteServer } from "vite";
 
-const isProduction = process.env.IS_PRODUCTION === "true";
+// const isProduction = process.env.IS_PRODUCTION === "true";
+const isProduction = process.env.NODE_ENV === "production";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -14,10 +15,10 @@ async function createServer() {
   // Create Vite server in middleware mode and configure the app type as
   // 'custom', disabling Vite's own HTML serving logic so parent server
   // can take control
-  const vite = await createViteServer({
+  const vite = !isProduction ? await createViteServer({
     server: { middlewareMode: true },
     appType: "custom",
-  });
+  }) : null;
 
   // Use vite's connect instance as middleware. If you use your own
   // express router (express.Router()), you should use router.use
@@ -25,7 +26,8 @@ async function createServer() {
   // vite.config.js), `vite.middlewares` is still going to be the same
   // reference (with a new internal stack of Vite and plugin-injected
   // middlewares). The following is valid even after restarts.
-  app.use(vite.middlewares);
+  
+  vite && app.use(vite.middlewares);
 
   isProduction && app.use(
     express.static(path.resolve(__dirname, 'dist/client'), {
