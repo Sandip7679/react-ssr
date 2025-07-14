@@ -76,8 +76,8 @@ async function createServer() {
       // console.log('head...',head);
 
       const finalHtml = template
-        .replace("<!--head-tags-->", ()=> head || "")
-        .replace("<!--ssr-outlet-->", ()=> html);
+        .replace("<!--head-tags-->", head || "")
+        .replace("<!--ssr-outlet-->", html);
 
       return res
         .status(200)
