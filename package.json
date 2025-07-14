@@ -7,7 +7,7 @@
     "dev": "node server",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --outDir dist/server --ssr src/entry-server.jsx",
-    "build": "vite build",
+    "build": "npm run build:client && npm run build:server",
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "vite"
