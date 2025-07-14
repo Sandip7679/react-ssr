@@ -31,7 +31,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    ssr: true, // Enable SSR build
+    // ssr: true, // Enable SSR build
   },
   server: {
     middlewareMode: true,
