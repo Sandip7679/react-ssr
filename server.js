@@ -27,6 +27,13 @@ async function createServer() {
   // middlewares). The following is valid even after restarts.
   app.use(vite.middlewares);
 
+  isProduction && app.use(
+    express.static(path.resolve(__dirname, 'dist/client'), {
+      index: false,
+    })
+  );
+
+
   app.use("*all", async (req, res, next) => {
     const url = req.originalUrl;
 
