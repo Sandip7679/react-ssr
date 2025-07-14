@@ -42,29 +42,29 @@
 
 
 // vite.config.js
-// import { defineConfig } from 'vite';
-// import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// export default defineConfig(({ command, ssrBuild }) => {
-//   const isSSR = !!ssrBuild;
+export default defineConfig(({ command, ssrBuild }) => {
+  const isSSR = !!ssrBuild;
 
-//   return {
-//     plugins: [react()],
-//     appType: 'custom',
-//     build: {
-//       outDir: isSSR ? 'dist/server' : 'dist/client',
-//       ssr: isSSR ? 'src/entry-server.jsx' : false,
-//       ssrManifest: !isSSR, // required only for client build
-//       rollupOptions: {
-//         input: isSSR ? undefined : 'index.html', // only needed for client
-//       }
-//     },
-//     server: {
-//       middlewareMode: true,
-//       allowedHosts: ['react-ssr-7bu1.onrender.com'],
-//     }
-//   };
-// });
+  return {
+    plugins: [react()],
+    appType: 'custom',
+    build: {
+      outDir: isSSR ? 'dist/server' : 'dist/client',
+      ssr: isSSR ? 'src/entry-server.jsx' : false,
+      ssrManifest: !isSSR, // required only for client build
+      rollupOptions: {
+        input: isSSR ? undefined : 'index.html', // only needed for client
+      }
+    },
+    server: {
+      middlewareMode: true,
+      allowedHosts: ['react-ssr-7bu1.onrender.com'],
+    }
+  };
+});
 
 
 
@@ -86,37 +86,37 @@
 
 
 
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+// import { defineConfig } from 'vite';
+// import react from '@vitejs/plugin-react';
 
-export default defineConfig(({ command, mode, ssrBuild }) => ({
-  plugins: [
-    react(
-      // {
-      //   jsxRuntime: 'automatic',
-      //   jsxDev: mode !== 'production',
-      // }
-    ),
-  ],
-  appType: 'custom',
-  build: ssrBuild
-    ? {
-        ssr: 'src/entry-server.jsx', // for SSR build
-        outDir: 'dist/server',
-        rollupOptions: {
-          input: 'src/entry-server.jsx',
-        },
-      }
-    : {
-        outDir: 'dist/client',
-        rollupOptions: {
-          input: 'index.html', // for client build
-        },
-      },
-      server: {
-        middlewareMode: true,
-        allowedHosts: ['react-ssr-7bu1.onrender.com'],
-      },
-}));
+// export default defineConfig(({ command, mode, ssrBuild }) => ({
+//   plugins: [
+//     react(
+//       // {
+//       //   jsxRuntime: 'automatic',
+//       //   jsxDev: mode !== 'production',
+//       // }
+//     ),
+//   ],
+//   appType: 'custom',
+//   build: ssrBuild
+//     ? {
+//         ssr: 'src/entry-server.jsx', // for SSR build
+//         outDir: 'dist/server',
+//         rollupOptions: {
+//           input: 'src/entry-server.jsx',
+//         },
+//       }
+//     : {
+//         outDir: 'dist/client',
+//         rollupOptions: {
+//           input: 'index.html', // for client build
+//         },
+//       },
+//       server: {
+//         middlewareMode: true,
+//         allowedHosts: ['react-ssr-7bu1.onrender.com'],
+//       },
+// }));
 
 
