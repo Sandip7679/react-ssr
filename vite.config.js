@@ -33,6 +33,10 @@ export default defineConfig({
   build: {
     ssr: true, // Enable SSR build
   },
+  server: {
+    middlewareMode: true,
+    allowedHosts: ['react-ssr-7bu1.onrender.com'], // ✅ Add your render.com domain here
+  },
 })
 
 // import { defineConfig } from 'vite'
