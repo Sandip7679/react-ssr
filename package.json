@@ -10,7 +10,7 @@
     "build": "npm run build:client && npm run build:server",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "vite"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^5.1.0",
