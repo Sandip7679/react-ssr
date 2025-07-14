@@ -15,10 +15,12 @@ async function createServer() {
   // Create Vite server in middleware mode and configure the app type as
   // 'custom', disabling Vite's own HTML serving logic so parent server
   // can take control
-  const vite = !isProduction ? await createViteServer({
-    server: { middlewareMode: true },
-    appType: "custom",
-  }) : null;
+  const vite = !isProduction
+    ? await createViteServer({
+        server: { middlewareMode: true },
+        appType: "custom",
+      })
+    : null;
 
   // Use vite's connect instance as middleware. If you use your own
   // express router (express.Router()), you should use router.use
@@ -26,15 +28,15 @@ async function createServer() {
   // vite.config.js), `vite.middlewares` is still going to be the same
   // reference (with a new internal stack of Vite and plugin-injected
   // middlewares). The following is valid even after restarts.
-  
+
   vite && app.use(vite.middlewares);
 
-  isProduction && app.use(
-    express.static(path.resolve(__dirname, 'dist/client'), {
-      index: false,
-    })
-  );
-
+  isProduction &&
+    app.use(
+      express.static(path.resolve(__dirname, "dist/client"), {
+        index: false,
+      })
+    );
 
   app.use("*all", async (req, res, next) => {
     const url = req.originalUrl;
@@ -64,7 +66,7 @@ async function createServer() {
       //    required, and provides efficient invalidation similar to HMR.
 
       const { render } = isProduction
-        ? await import(path.resolve(__dirname, 'dist/server/entry-server.js'))
+        ? await import(path.resolve(__dirname, "dist/server/entry-server.js"))
         : await vite.ssrLoadModule("/src/entry-server.jsx");
 
       // 4. render the app HTML. This assumes entry-server.js's exported
@@ -95,7 +97,10 @@ async function createServer() {
     } catch (e) {
       // If an error is caught, let Vite fix the stack trace so it maps back
       // to your actual source code.
-      vite.ssrFixStacktrace(e);
+      if (vite) {
+        vite.ssrFixStacktrace(e);
+      }
+
       next(e);
     }
   });
