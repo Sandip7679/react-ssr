@@ -24,20 +24,20 @@
 
 
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  build: {
-    ssr: true, // Enable SSR build
-  },
-  server: {
-    middlewareMode: true,
-    allowedHosts: ['react-ssr-7bu1.onrender.com'], // ✅ Add your render.com domain here
-  },
-})
+// // https://vite.dev/config/
+// export default defineConfig({
+//   plugins: [react()],
+//   build: {
+//     ssr: true, // Enable SSR build
+//   },
+//   server: {
+//     middlewareMode: true,
+//     allowedHosts: ['react-ssr-7bu1.onrender.com'], // ✅ Add your render.com domain here
+//   },
+// })
 
 
 
@@ -80,4 +80,36 @@ export default defineConfig({
 //     middlewareMode: true,
 //   }
 // });
+
+
+
+
+
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig(({ command, mode, ssrBuild }) => ({
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+      jsxDev: false,
+    }),
+  ],
+  build: ssrBuild
+    ? {
+        ssr: 'src/entry-server.jsx', // for SSR build
+        outDir: 'dist/server',
+        rollupOptions: {
+          input: 'src/entry-server.jsx',
+        },
+      }
+    : {
+        outDir: 'dist/client',
+        rollupOptions: {
+          input: 'index.html', // for client build
+        },
+      },
+}));
+
 
