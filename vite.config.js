@@ -110,6 +110,10 @@ export default defineConfig(({ command, mode, ssrBuild }) => ({
           input: 'index.html', // for client build
         },
       },
+      server: {
+        middlewareMode: true,
+        allowedHosts: ['react-ssr-7bu1.onrender.com'],
+      },
 }));
 
 
