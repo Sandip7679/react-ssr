@@ -51,14 +51,14 @@ export default defineConfig(({ command, ssrBuild }) => {
   return {
     plugins: [react()],
     appType: 'custom',
-    build: {
-      outDir: isSSR ? 'dist/server' : 'dist/client',
-      ssr: isSSR ? 'src/entry-server.jsx' : false,
-      ssrManifest: !isSSR, // required only for client build
-      rollupOptions: {
-        input: isSSR ? undefined : 'index.html', // only needed for client
-      }
-    },
+    // build: {
+    //   outDir: isSSR ? 'dist/server' : 'dist/client',
+    //   ssr: isSSR ? 'src/entry-server.jsx' : false,
+    //   ssrManifest: !isSSR, // required only for client build
+    //   rollupOptions: {
+    //     input: isSSR ? undefined : 'index.html', // only needed for client
+    //   }
+    // },
     server: {
       middlewareMode: true,
       allowedHosts: ['react-ssr-7bu1.onrender.com'],
