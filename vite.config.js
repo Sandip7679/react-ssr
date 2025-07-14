@@ -49,11 +49,7 @@ export default defineConfig(({ command, ssrBuild }) => {
   const isSSR = !!ssrBuild;
 
   return {
-    plugins: [react({
-      // Ensure production mode
-      jsxRuntime: 'automatic',
-      jsxDev: false, // disables jsxDEV helper in production build
-    })],
+    plugins: [react()],
     appType: 'custom',
     build: {
       outDir: isSSR ? 'dist/server' : 'dist/client',
