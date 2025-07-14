@@ -55,7 +55,7 @@ async function createServer() {
       //    required, and provides efficient invalidation similar to HMR.
 
       const { render } = isProduction
-        ? await import(path.resolve(__dirname, 'dist/server/entry-server.js'))
+        ? await import(path.resolve(__dirname, 'dist/server/entry-server.jsx'))
         : await vite.ssrLoadModule("/src/entry-server.jsx");
 
       // 4. render the app HTML. This assumes entry-server.js's exported
