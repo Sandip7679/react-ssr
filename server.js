@@ -120,8 +120,8 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import { createServer as createViteServer } from "vite";
 
-// const isProduction = process.env.IS_PRODUCTION === "true";
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.IS_PRODUCTION === "true";
+// const isProduction = process.env.NODE_ENV === "production";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
