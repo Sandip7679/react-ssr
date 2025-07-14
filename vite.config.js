@@ -24,47 +24,47 @@
 
 
 
-// import { defineConfig } from 'vite'
-// import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-// // https://vite.dev/config/
-// export default defineConfig({
-//   plugins: [react()],
-//   build: {
-//     ssr: true, // Enable SSR build
-//   },
-//   server: {
-//     middlewareMode: true,
-//     allowedHosts: ['react-ssr-7bu1.onrender.com'], // ✅ Add your render.com domain here
-//   },
-// })
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    ssr: true, // Enable SSR build
+  },
+  server: {
+    middlewareMode: true,
+    allowedHosts: ['react-ssr-7bu1.onrender.com'], // ✅ Add your render.com domain here
+  },
+})
 
 
 
 // vite.config.js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+// import { defineConfig } from 'vite';
+// import react from '@vitejs/plugin-react';
 
-export default defineConfig(({ command, ssrBuild }) => {
-  const isSSR = !!ssrBuild;
+// export default defineConfig(({ command, ssrBuild }) => {
+//   const isSSR = !!ssrBuild;
 
-  return {
-    plugins: [react()],
-    appType: 'custom',
-    build: {
-      outDir: isSSR ? 'dist/server' : 'dist/client',
-      ssr: isSSR ? 'src/entry-server.jsx' : false,
-      ssrManifest: !isSSR, // required only for client build
-      rollupOptions: {
-        input: isSSR ? undefined : 'index.html', // only needed for client
-      }
-    },
-    server: {
-      middlewareMode: true,
-      allowedHosts: ['react-ssr-7bu1.onrender.com'],
-    }
-  };
-});
+//   return {
+//     plugins: [react()],
+//     appType: 'custom',
+//     build: {
+//       outDir: isSSR ? 'dist/server' : 'dist/client',
+//       ssr: isSSR ? 'src/entry-server.jsx' : false,
+//       ssrManifest: !isSSR, // required only for client build
+//       rollupOptions: {
+//         input: isSSR ? undefined : 'index.html', // only needed for client
+//       }
+//     },
+//     server: {
+//       middlewareMode: true,
+//       allowedHosts: ['react-ssr-7bu1.onrender.com'],
+//     }
+//   };
+// });
 
 
 
