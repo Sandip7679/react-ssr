@@ -33,7 +33,7 @@ async function createServer() {
     try {
       // 1. Read index.html
 
-      const template = isProduction
+      let template = isProduction
         ? fs.readFileSync(
             path.resolve(__dirname, "dist/client/index.html"),
             "utf-8"
