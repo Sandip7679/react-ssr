@@ -40,6 +40,7 @@ import About from './pages/About';
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
+  // { path: '*', component: () => <h2>404 - Not Found</h2> },
 ];
 
 export async function render(url) {
@@ -52,8 +53,8 @@ export async function render(url) {
     location={url}
     // context={context} -- Uncomment if you need context for redirects or not found
     >
-      {/* <Component /> */}
-      <App />
+      <Component />
+      {/* <App /> */}
     </StaticRouter>
   );
 
