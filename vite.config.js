@@ -87,8 +87,8 @@ export default defineConfig(({ command, ssrBuild }) => {
     appType: isDev ? 'custom' : undefined, // ✅ Only in dev
     build: {
       outDir: isSSR ? 'dist/server' : 'dist/client',
-      // ssr: isSSR ? 'src/entry-server.jsx' : false,
-      ssr:  { noExternal: ['react-router-dom'] },
+      ssr: isSSR ? 'src/entry-server.jsx' : false,
+      // ssr:  { noExternal: ['react-router-dom'] },
       rollupOptions: isSSR ? {} : { input: 'index.html' }, // ✅ Safe fallback
     },
     server: {
