@@ -93,7 +93,8 @@ export default defineConfig(({ command, ssrBuild }) => {
     },
     server: {
       middlewareMode: isDev,
-      allowedHosts: ['react-ssr-7bu1.onrender.com'], // ✅ For Render.com
+      // allowedHosts: 'all,
+      allowedHosts: [process.env.VITE_ALLOWED_HOSTS], // ✅ For Render.com
     },
   };
 });
