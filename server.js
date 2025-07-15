@@ -31,12 +31,12 @@ async function createServer() {
 
   vite && app.use(vite.middlewares);
 
-  // isProduction &&
-  //   app.use(
-  //     express.static(path.resolve(__dirname, "dist/client"), {
-  //       index: false,
-  //     })
-  //   );
+  isProduction &&
+    app.use(
+      express.static(path.resolve(__dirname, "dist/client"), {
+        index: false,
+      })
+    );
 
   app.use("*all", async (req, res, next) => {
     const url = req.originalUrl;
