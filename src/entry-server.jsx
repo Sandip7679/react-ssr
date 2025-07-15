@@ -40,7 +40,7 @@ import About from './pages/About';
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
-  { path: '*', component: () => <h2>404 - Not Found</h2> },
+  { path: '*', component: () => <h2>404 - Not Found!</h2> },
 ];
 
 export async function render(url) {
