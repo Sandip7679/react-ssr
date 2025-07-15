@@ -49,10 +49,11 @@ export async function render(url) {
 
   const app = (
     <StaticRouter 
-    // location={url}
+    location={url}
     // context={context} -- Uncomment if you need context for redirects or not found
     >
-      <Component />
+      {/* <Component /> */}
+      <App />
     </StaticRouter>
   );
 
