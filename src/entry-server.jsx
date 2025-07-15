@@ -40,7 +40,7 @@ import About from './pages/About';
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
-  // { path: '*', component: () => <h2>404 - Not Found</h2> },
+  { path: '*', component: () => <h2>404 - Not Found</h2> },
 ];
 
 export async function render(url) {
@@ -65,6 +65,11 @@ export async function render(url) {
   const head = `
     <title>${meta?.title || 'Default Title'}</title>
     <meta name="description" content="${meta?.description || ''}" />
+    <meta name="keywords" content="${meta?.keywords || ''}" />
+    <meta name="author" content="${meta?.author || ''}" />
+    <meta name="robots" content="${meta?.robots || ''}" />
+    <meta property="og:image" content="${meta?.image || ''}" />
+    <meta property="og:type" content="${meta?.ogType || ''}" />
   `;
 
   return { html, head };
