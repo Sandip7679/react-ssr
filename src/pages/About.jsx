@@ -17,7 +17,7 @@ About.meta = {
   keywords: 'about, application, features',
   author: 'Your Name',
   robots: 'index, follow',
-  image: `${process.env.BASE_URL}/about.png`, // Optional, if you have an image for social sharing
+  image: `${process.env.BASE_URL}/about2.jpg`, // Optional, if you have an image for social sharing
   ogType: 'website', // Open Graph type
 };
 
