@@ -24,20 +24,20 @@
 
 
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  build: {
-    // ssr: true, // Enable SSR build
-  },
-  server: {
-    middlewareMode: true,
-    allowedHosts: ['react-ssr-7bu1.onrender.com'], // ✅ Add your render.com domain here
-  },
-})
+// // https://vite.dev/config/
+// export default defineConfig({
+//   plugins: [react()],
+//   build: {
+//     // ssr: true, // Enable SSR build
+//   },
+//   server: {
+//     middlewareMode: true,
+//     allowedHosts: ['react-ssr-7bu1.onrender.com'], // ✅ Add your render.com domain here
+//   },
+// })
 
 
 
@@ -47,25 +47,55 @@ export default defineConfig({
 // import react from '@vitejs/plugin-react';
 
 // export default defineConfig(({ command, ssrBuild }) => {
-//   // const isSSR = !!ssrBuild;
+//   const isSSR = !!ssrBuild;
 
 //   return {
 //     plugins: [react()],
 //     appType: 'custom',
-//     // build: {
-//     //   outDir: isSSR ? 'dist/server' : 'dist/client',
-//     //   ssr: isSSR ? 'src/entry-server.jsx' : false,
-//     //   ssrManifest: !isSSR, // required only for client build
-//     //   rollupOptions: {
-//     //     input: isSSR ? undefined : 'index.html', // only needed for client
-//     //   }
-//     // },
+//     build: {
+//       outDir: isSSR ? 'dist/server' : 'dist/client',
+//       ssr: isSSR ? 'src/entry-server.jsx' : false,
+//       ssrManifest: !isSSR, // required only for client build
+//       rollupOptions: {
+//         input: isSSR ? undefined : 'index.html', // only needed for client
+//       }
+//     },
 //     server: {
 //       middlewareMode: true,
 //       allowedHosts: ['react-ssr-7bu1.onrender.com'],
 //     }
 //   };
 // });
+
+// vite.config.js  2
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig(({ command, ssrBuild }) => {
+  const isSSR = !!ssrBuild;
+  const isDev = command === 'serve';
+
+  return {
+    plugins: [
+      react({
+        jsxRuntime: 'automatic',
+        jsxDev: false, // ✅ Required for SSR prod build
+      }),
+    ],
+    appType: isDev ? 'custom' : undefined, // ✅ Only in dev
+    build: {
+      outDir: isSSR ? 'dist/server' : 'dist/client',
+      ssr: isSSR ? 'src/entry-server.jsx' : false,
+      rollupOptions: isSSR ? {} : { input: 'index.html' }, // ✅ Safe fallback
+    },
+    server: {
+      middlewareMode: isDev,
+      allowedHosts: ['react-ssr-7bu1.onrender.com'], // ✅ For Render.com
+    },
+  };
+});
+
 
 
 
