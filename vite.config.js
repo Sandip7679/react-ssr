@@ -81,7 +81,7 @@ export default defineConfig(({ command, ssrBuild }) => {
     plugins: [
       react({
         jsxRuntime: 'automatic',
-        jsxDev: false, // ✅ Required for SSR prod build
+        jsxDev: isDev, // ✅ Required for SSR prod build
       }),
     ],
     appType: isDev ? 'custom' : undefined, // ✅ Only in dev
