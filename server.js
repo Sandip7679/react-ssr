@@ -20,7 +20,11 @@ async function createServer() {
         server: { middlewareMode: true },
         appType: "custom",
       })
-    : null;
+    // : null;
+    : await createViteServer({
+        server: { middlewareMode: true },
+        appType: "custom",
+      });
 
   // Use vite's connect instance as middleware. If you use your own
   // express router (express.Router()), you should use router.use
@@ -29,7 +33,7 @@ async function createServer() {
   // reference (with a new internal stack of Vite and plugin-injected
   // middlewares). The following is valid even after restarts.
 
-  vite && app.use(vite.middlewares);
+  app.use(vite.middlewares);
 
   isProduction &&
     app.use(
