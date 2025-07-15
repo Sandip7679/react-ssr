@@ -23,6 +23,7 @@
 // })
 
 
+// working version 1
 
 // import { defineConfig } from 'vite'
 // import react from '@vitejs/plugin-react'
@@ -67,7 +68,7 @@
 //   };
 // });
 
-// vite.config.js  2
+// vite.config.js  2 working versions
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -86,7 +87,8 @@ export default defineConfig(({ command, ssrBuild }) => {
     appType: isDev ? 'custom' : undefined, // ✅ Only in dev
     build: {
       outDir: isSSR ? 'dist/server' : 'dist/client',
-      ssr: isSSR ? 'src/entry-server.jsx' : false,
+      // ssr: isSSR ? 'src/entry-server.jsx' : false,
+      ssr:  { noExternal: ['react-router-dom'] },
       rollupOptions: isSSR ? {} : { input: 'index.html' }, // ✅ Safe fallback
     },
     server: {
